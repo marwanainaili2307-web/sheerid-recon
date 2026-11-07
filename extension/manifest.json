@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "Xi · Google AI Pro 2Y Offer Injector",
+  "version": "1.0.0",
+  "description": "Google One / AI Pro 结账 offer token 注入器（自用）",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://one.google.com/*",
+    "https://tokenized.play.google.com/*",
+    "https://play.google.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Google AI Pro 注入器"
+  },
+  "icons": {
+    "16": "icons/16.png",
+    "48": "icons/48.png",
+    "128": "icons/128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://one.google.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://one.google.com/*"],
+      "js": ["inject.js"],
+      "run_at": "document_start",
+      "world": "MAIN",
+      "all_frames": false
+    },
+    {
+      "matches": ["https://tokenized.play.google.com/*"],
+      "js": ["play_guard.js"],
+      "run_at": "document_idle",
+      "world": "MAIN",
+      "all_frames": true
+    }
+  ]
+}
